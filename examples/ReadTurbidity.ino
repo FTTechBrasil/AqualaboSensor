@@ -1,3 +1,33 @@
+/**! -----------------------------------------
+ * The MIT License (MIT)
+ * 
+ * Copyright (c) 2021 FTTech
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+ * -----------------------------------------
+ *
+ * Read NTU Turbidity
+ * 
+ * This examples show how to read the NTU Turbidity Sesor from Aqualabo using
+ * Modbus through RS485. This library uses Arduino Modbus and ArduinoRS485 together
+ * with an RS485 Click made by FTTech.
+ * 
+ * 
+ * Itens needed:
+ *  - FTTech SmartNode Board (This also works with arduino boards)
+ *  - RS485 Click
+ *  - Arqualabo Turbidity Sensor
+ *
+ * -----------------------------------------
+*/
+
 #include "FTTech_SAMD51Clicks.h"
 #include "AqualaboSensor.h"
 
