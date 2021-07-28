@@ -36,6 +36,7 @@ class AqualaboSensorClass{
         uint8_t initSensor(uint8_t avg=1);
         uint8_t readWaitingTime(void);
         uint8_t readAverage(void);
+        uint8_t changeAddress(uint8_t sensor_address);
         uint8_t writeAverage(uint8_t avg);
         uint8_t readNTU(void);
 

@@ -132,6 +132,61 @@ uint8_t AqualaboSensorClass::readWaitingTime(void)
 }
 
 
+/**!
+ * @name:	changeAddress(uint8_t sensor_address)
+ * @description: Change the sensor slave address
+ * @param : sensor_address
+ * @returns: uint8_t "1" if no error, "0" if error
+*/
+uint8_t AqualaboSensorClass::changeAddress(uint8_t sensor_address)
+{		
+	#if ACTLOGLEVEL>=LOG_DEBUG_V3
+    	LogObject.uart_send_strln(F("AqualaboSensorClass::changeAddress(uint8_t sensor_address)"));
+  	#endif
+
+	uint8_t retries = 0;
+	int8_t result = 0;
+
+	if (sensor_address > 247){
+		LogObject.uart_send_str(F("Requested address ("));
+		LogObject.uart_send_dec(sensor_address);
+		LogObject.uart_send_str(F(") is bigger than 247. We are changing it to: "));
+		
+		sensor_address = 247;
+		LogObject.uart_send_decln(sensor_address);
+	}
+
+	while (!result && (retries < 5))
+	{
+		result = _modbusRTUClient->holdingRegisterWrite(_slave_address, 0x00A3, sensor_address);
+		if(!result){
+			#if ACTLOGLEVEL>=LOG_DEBUG
+				LogObject.uart_send_str(F("Write address holding register failed! Attempt: "));
+				LogObject.uart_send_dec(retries);
+				LogObject.uart_send_str(F(" Error: "));
+				LogObject.uart_send_decln(_modbusRTUClient->lastError());
+			#endif
+			delay(100);
+			retries++;
+		}else{
+			#if ACTLOGLEVEL>=LOG_DEBUG_V3
+				LogObject.uart_send_strln(F("Succefully wrote address holding register"));
+			#endif
+			_slave_address = sensor_address;
+			return 1;	
+		}
+	}
+
+	// If no response from the slave, print an error message.
+	#if ACTLOGLEVEL>=LOG_WARNING
+		LogObject.uart_send_str(F("Communication error when trying to write address register"));
+		LogObject.uart_send_str(F(" Error: "));
+		LogObject.uart_send_decln(_modbusRTUClient->lastError());
+	#endif
+	
+	return 0;	
+}
+
 
 
 /**!
@@ -403,7 +458,7 @@ uint8_t AqualaboSensorClass::requestFromModbus(uint8_t modbus_function, uint16_t
 				LogObject.uart_send_decln(_modbusRTUClient->lastError());			
 			#endif
 			delay(100);
-			retries++;
+			_retries++;
 		}else{
 			#if ACTLOGLEVEL>=LOG_DEBUG_V3
 				LogObject.uart_send_strln(F("Got Modbus message"));
