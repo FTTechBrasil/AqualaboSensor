@@ -8,16 +8,18 @@
 AqualaboSensorClass     KEYWORD1
 aqualaboSensorObj	    KEYWORD1
 sensorNTU               KEYWORD1
+u16ItoFloat             KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-begin	                            KEYWORD2
-initSensor	                        KEYWORD2
-readWaitingTime	                    KEYWORD2
-readAverage     	                KEYWORD2
-writeAverage	                    KEYWORD2
-readNTU	                            KEYWORD2
+begin                   KEYWORD2
+initSensor              KEYWORD2
+readWaitingTime         KEYWORD2
+readAverage             KEYWORD2
+changeAddress           KEYWORD2
+writeAverage            KEYWORD2
+readNTU                 KEYWORD2
 
 requestFromModbusHoldingRegisters	KEYWORD2
 requestFromModbus	                KEYWORD2
