@@ -1,7 +1,7 @@
 # AqualaboSensor
 
 ## Introduction
-This is an Arduino Library for Arduino Compatible with Agualabo Sensors created by FTTech.
+This is an Arduino Library Compatible with Aqualabo Sensors created by FTTech.
 
 ## Sensores Compatibles
 ### Working and tested
@@ -11,7 +11,7 @@ This is an Arduino Library for Arduino Compatible with Agualabo Sensors created 
 ## Dependencies
 - [ArduinoModbus](https://www.arduino.cc/en/ArduinoModbus/ArduinoModbus)
 
-We also have light dependency on our library, to use without it, just remove the functions that use `FTTClicks` on the examples.
+We also have light dependency on our library, to use without it, just remove the functions that use `FTClicks` on the examples.
 - [FTTech SAMD51 Clicks](https://github.com/FTTechBrasil/FTTech_SAMD51_Clicks)
 
 ## License
