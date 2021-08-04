@@ -33,6 +33,7 @@
 
 #define DEBUG_SERIAL Serial
 #define NTU_SERIAL Serial3
+static const uint8_t rs485_click = 3;
 
 uint8_t tx_pin = 42;
 uint8_t de_pin = A9;
@@ -46,7 +47,7 @@ int result;
 void setup() {
   FTClicks.begin();
   FTClicks.turnON_5V();   // Power StepUp to power the ryon
-  FTClicks.turnON(3);   // Power the RS485 Click
+  FTClicks.turnON(rs485_click);   // Power the RS485 Click
 
   DEBUG_SERIAL.begin(9600);
   while(!DEBUG_SERIAL)
@@ -57,7 +58,7 @@ void setup() {
   Serial.println(F("********************************************************"));
 
 
-  RS485 = RS485Class(Serial3, tx_pin, de_pin, re_pin);
+  RS485 = RS485Class(NTU_SERIAL, tx_pin, de_pin, re_pin);
   ModbusRTUClient = ModbusRTUClientClass(RS485);
 
   aqualaboSensorObj = AqualaboSensorClass(ModbusRTUClient);
