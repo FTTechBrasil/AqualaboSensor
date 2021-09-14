@@ -60,13 +60,12 @@ int result; // Store the result of connection
 /* *****************************************
  * XBEE DEFINED VARIABLES
  */
-#define XBEE_SERIAL Serial2 // XBee Serial port. If you're using FTClicks S3 board it will be one Serial4
-int BAUDRATE = 115200; // XBee baudrate
-int address_HB = 0x0013A200; // Most significant bytes from destination XBee's address
-int address_LB = 0x40B5F379; // Least significant bytes from destination XBee's address
+int BAUDRATE = 0XXXXX; // XBee baudrate
+int address_HB = 0xXXXXXXXX; // Most significant bytes from destination XBee's address
+int address_LB = 0xXXXXXXXX; // Least significant bytes from destination XBee's address
 uint8_t payload[100] = {0}; // Creates payload, and defines its maximum size
 const uint8_t xbee_id = 2; // Defines the XBee click ID within the board
-FTTech_Xbee xbee(Serial2); // Create object with the serial parameter
+FTTech_Xbee xbee(); // Create object with the serial parameter
 /*****************************************/
 
 void setup() {
@@ -89,9 +88,8 @@ void setup() {
     /* *****************************************
      * XBEE INIT AND BEGIN
      */
-    XBEE_SERIAL.begin(BAUDRATE);
     xbee.setChipID(FTClicks.ChipID);
-    xbee.begin();
+    xbee.begin(BAUDRATE);
     /******************************************/
 
     /* *****************************************
